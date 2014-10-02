@@ -1,4 +1,4 @@
-hangout-timer
+Hangout Timer
 =============
 
-A timer extension for Google Hangout
+A timer extension for Google Hangout.
