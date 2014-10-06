@@ -4,8 +4,7 @@ function HangoutOverlay() {
   function refreshFromUrl(dataUrl) {
     var imgRsc = gapi.hangout.av.effects.createImageResource(dataUrl);
     imgRsc.showOverlay();
-    if (prevImgRsc)
-      prevImgRsc.dispose();
+    if (prevImgRsc) prevImgRsc.dispose();
     prevImgRsc = imgRsc;
   };
   return {

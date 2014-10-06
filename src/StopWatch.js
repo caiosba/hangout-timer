@@ -73,7 +73,7 @@ function HoverTimer(canvas, x, y) {
   }
 
   return {
-    clear: function(){
+    clear: function() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
     },
     drawToDataUrl: function(timestr) {
