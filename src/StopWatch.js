@@ -18,8 +18,13 @@ function StopWatch(id) {
     },
     pause: function() {
       this.running = false;
+      this.duration = this.duration - this.elapsed;
+      this.elapsed = 0;
     },
-    resume: function() {
+    resume: function(time) {
+      if (time) {
+        this.duration = time;
+      }
       this.running = true;
     },
     start: function() {

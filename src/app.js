@@ -39,7 +39,7 @@ include('//ca.ios.ba/files/the-jibe/timer/src/StopWatch.js?_t=' + Date.now(), fu
         if (minutes < 10) minutes = '0' + minutes;
         if (seconds < 10) seconds = '0' + seconds;
         stopwatch[id].timestr = minutes + ':' + seconds;
-        document.getElementById('timer-' + id).value = stopwatch[id].timestr;
+        if (stopwatch[id].running) document.getElementById('timer-' + id).value = stopwatch[id].timestr;
 
         var dataurl = hovertimer.drawToDataUrl(stopwatch);
         overlay.setUrl(dataurl);
@@ -85,7 +85,10 @@ include('//ca.ios.ba/files/the-jibe/timer/src/StopWatch.js?_t=' + Date.now(), fu
     })(id);
     button.innerHTML = 'Pause';
     button.className = 'pause';
-    stopwatch[id].resume();
+    var value = document.getElementById('timer-' + id).value,
+        minutes_and_seconds = value.split(':'),
+        time = parseInt(minutes_and_seconds[0], 10) * 60 + parseInt(minutes_and_seconds[1], 10);
+    stopwatch[id].resume(time);
   };
 
   var stop = function(id) {
