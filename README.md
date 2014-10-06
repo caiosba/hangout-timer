@@ -21,6 +21,10 @@ Currently the extension is stored on my server, which doesn't have a valid SSL c
 
 [Try the extension](https://hangoutsapi.talkgadget.google.com/hangouts?gid=223741802818) now!
 
+### Demonstration
+
+Check [this video](http://ca.ios.ba/files/the-jibe/timer/demo1.mp4) and [this other video](http://ca.ios.ba/files/the-jibe/timer/demo2.mp4)!
+
 ### Credits
 
 Caio Almeida <caiosba@gmail.com>
