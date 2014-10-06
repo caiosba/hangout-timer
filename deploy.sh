@@ -1,3 +1,3 @@
 #!/bin/bash
-puts 'Sending files to server...'
+echo 'Sending files to server...'
 scp -r * ca.ios.ba:the-jibe/timer/
