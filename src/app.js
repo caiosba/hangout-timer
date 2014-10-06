@@ -13,79 +13,92 @@ function HangoutOverlay() {
 };
 
 include('//ca.ios.ba/files/the-jibe/timer/src/StopWatch.js?_t=' + Date.now(), function() {
-  var stopwatch  = new StopWatch(),
+
+  var timers     = ['1', 'a', 'b'],
       canvas     = document.getElementById('img'),
       overlay    = new HangoutOverlay(),
-      hovertimer = new HoverTimer(canvas, 10, canvas.height - 10);
+      hovertimer = new HoverTimer(canvas, 10, canvas.height - 10),
+      stopwatch  = {};
+
+  for (var i = 0; i < timers.length; i++) {
+    var id = timers[i];
+    stopwatch[id] = new StopWatch(id);
+  }
 
   // Duration must be in seconds
-  var timer = function(duration) {
+  var timer = function(duration, id) {
     if (duration) {
-      stopwatch.reset(duration);
+      stopwatch[id].reset(duration);
       hovertimer.clear();
 
       // Each second
-      stopwatch.handler = function() {
+      stopwatch[id].handler = function() {
         // Update timer here
-        var minutes = parseInt((stopwatch.duration - stopwatch.elapsed) / 60, 10);
-        var seconds = parseInt((stopwatch.duration - stopwatch.elapsed) % 60, 10);
+        var minutes = parseInt((stopwatch[id].duration - stopwatch[id].elapsed) / 60, 10);
+        var seconds = parseInt((stopwatch[id].duration - stopwatch[id].elapsed) % 60, 10);
         if (minutes < 10) minutes = '0' + minutes;
         if (seconds < 10) seconds = '0' + seconds;
-        var timestr = minutes + ':' + seconds;
-        document.getElementById('timer-1').value = timestr;
+        stopwatch[id].timestr = minutes + ':' + seconds;
+        document.getElementById('timer-' + id).value = stopwatch[id].timestr;
 
-        var dataurl = hovertimer.drawToDataUrl(timestr);
+        var dataurl = hovertimer.drawToDataUrl(stopwatch);
         overlay.setUrl(dataurl);
 
-        if (timestr == '00:00') {
-          timer();
+        if (stopwatch[id].timestr == '00:00') {
+          timer(null, id);
         }
       };
       
-      stopwatch.start();
+      stopwatch[id].start();
     }
     else {
-      stop();
-      overlay.setUrl(hovertimer.drawToDataUrl('00:00'));
+      stop(id);
+      overlay.setUrl(hovertimer.drawToDataUrl(stopwatch));
     }
   };
 
-  var start = function() {
-    var value = document.getElementById('timer-1').value;
+  var start = function(id) {
+    var value = document.getElementById('timer-' + id).value;
     if (value != '00:00') {
-      stopwatch.last = value;
-      var minutes_and_seconds = stopwatch.last.split(':');
+      stopwatch[id].last = value;
+      var minutes_and_seconds = stopwatch[id].last.split(':');
       var time = parseInt(minutes_and_seconds[0], 10) * 60 + parseInt(minutes_and_seconds[1], 10);
-      timer(time);
-      resume();
+      timer(time, id);
+      resume(id);
     }
   };
 
-  var pause = function() {
-    var button = document.getElementById('start');
-    button.onclick = resume;
+  var pause = function(id) {
+    var button = document.getElementById('start-' + id);
+    button.onclick = (function(opt) {
+      return function() { resume(opt); };
+    })(id);
     button.innerHTML = 'Resume';
-    stopwatch.pause();
+    stopwatch[id].pause();
   };
 
-  var resume = function() {
-    var button = document.getElementById('start');
-    button.onclick = pause;
+  var resume = function(id) {
+    var button = document.getElementById('start-' + id);
+    button.onclick = (function(opt) {
+      return function() { pause(opt); };
+    })(id);
     button.innerHTML = 'Pause';
-    stopwatch.resume();
+    stopwatch[id].resume();
   };
 
-  var stop = function() {
-    var button = document.getElementById('start');
-    button.onclick = start;
+  var stop = function(id) {
+    var button = document.getElementById('start-' + id);
+    button.onclick = (function(opt) {
+      return function() { start(opt); };
+    })(id);
     button.innerHTML = 'Start';
-    stopwatch.stop();
+    stopwatch[id].stop();
   };
 
-  var validate = function() {
-    var start   = document.getElementById('start'),
+  var validate = function(id) {
+    var start   = document.getElementById('start-' + id),
         message = document.getElementById('message');
-    if (/^[0-9]{2}:[0-9]{2}$/.test(document.getElementById('timer-1').value)) {
+    if (/^[0-9]{2}:[0-9]{2}$/.test(document.getElementById('timer-' + id).value)) {
       start.disabled = false;
       message.innerHTML = '';
     }
@@ -95,16 +108,23 @@ include('//ca.ios.ba/files/the-jibe/timer/src/StopWatch.js?_t=' + Date.now(), fu
     }
   };
 
-  document.getElementById('start').onclick = start;
+  for (var i = 0; i < timers.length; i++) {
+    var id = timers[i];
+    document.getElementById('timer-' + id).onkeyup = (function(opt) {
+      return function() { validate(opt); };
+    })(id);
 
-  document.getElementById('timer-1').onkeyup = validate;
+    document.getElementById('start-' + id).onclick = (function(opt) {
+      return function() { start(opt); };
+    })(id);
+  }
 
   document.getElementById('reset').onclick = function() {
-    if (stopwatch.last) {
-      document.getElementById('timer-1').value = stopwatch.last;
-      var dataurl = hovertimer.drawToDataUrl(stopwatch.last);
+    if (stopwatch['1'].last) {
+      document.getElementById('timer-1').value = stopwatch['1'].timestr = stopwatch['1'].last;
+      var dataurl = hovertimer.drawToDataUrl(stopwatch);
       overlay.setUrl(dataurl);
-      stop();
+      stop('1');
     }
   };
 
@@ -136,11 +156,11 @@ include('//ca.ios.ba/files/the-jibe/timer/src/StopWatch.js?_t=' + Date.now(), fu
       a.appendChild(t);
       container.appendChild(a);
       a.onclick = function() {
-        stop();
+        stop('1');
         timer.value = minutesToString(this.getAttribute('data-value'));
         if (document.getElementById('debate-time-selected')) document.getElementById('debate-time-selected').removeAttribute('id');
         this.setAttribute('id', 'debate-time-selected');
-        validate();
+        validate('1');
       };
     }
   };

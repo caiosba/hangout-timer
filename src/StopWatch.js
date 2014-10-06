@@ -1,11 +1,13 @@
-function StopWatch() {
+function StopWatch(id) {
   return {
+    id: id,
     elapsed: 0, // In seconds
     duration: 30, // In seconds
     interval: null,
     handler: null,
     last: null,
     running: false,
+    timestr: '00:00',
     stop: function() {
       if (this.interval) {
         clearInterval(this.interval);
@@ -13,6 +15,7 @@ function StopWatch() {
       }
       this.running = false;
       this.elapsed = 0;
+      this.timestr = '00:00';
     },
     pause: function() {
       this.running = false;
@@ -66,19 +69,19 @@ function HoverTimer(canvas, x, y) {
   var x = x;
   var y = y;
   
-  function drawTimer(timestr) {
+  function drawTimer(stopwatch) {
     roundRect(ctx, x, y - 10 - canvas.height / 3, canvas.width / 3, canvas.height / 3, 6);
     ctx.fillStyle = '#4C7A34';
-    ctx.fillText(timestr, x + 10, y - 20);
+    ctx.fillText(stopwatch['1'].timestr, x + 10, y - 20);
   }
 
   return {
     clear: function() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
     },
-    drawToDataUrl: function(timestr) {
+    drawToDataUrl: function(stopwatch) {
       this.clear();
-      drawTimer(timestr);
+      drawTimer(stopwatch);
       return canvas.toDataURL();
     }
   };

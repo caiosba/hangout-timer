@@ -33,7 +33,7 @@
     <input type="text" id="timer-1" value="08:00" />
 
     <div id="buttons">
-      <button id="start">Start</button>
+      <button id="start-1">Start</button>
       <button id="reset">Reset timer</button>
     </div>
     <p id="message"></p>
