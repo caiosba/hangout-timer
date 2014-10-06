@@ -10,49 +10,60 @@
 <html>
   <head>
     <style type="text/css">
+      @import url('//ca.ios.ba/files/the-jibe/timer/src/style.css');
     </style>
   </head>
   <body>
+    <div id="body">
+      <h3>USC Debate Timer</h3>
+      
+      <label for="debate-type">Debate type:</label>
+      <select id="debate-type">
+        <option value="highschool" selected>High School Policy</option>
+        <option value="college">College Policy</option>
+        <option value="british">British Parliamentary</option>
+      </select>
 
-    <h3>USC Debate Timer</h3>
-    
-    <label for="debate-type">Debate type:</label>
-    <select id="debate-type">
-      <option value="highschool" selected>High School Policy</option>
-      <option value="college">College Policy</option>
-      <option value="british">British Parliamentary</option>
-    </select>
+      <label for="debate-time-options">Set Debate Timer To:</label>
+      <div id="debate-time-options">
+      </div>
 
-    <label for="debate-time-options">Set Debate Timer To:</label>
-    <div id="debate-time-options">
-    </div>
+      <p>Clicking on the timer display will allow you enter a custom time.</p>
 
-    <p>Clicking on the timer display will allow you enter a custom time.</p>
+      <div id="debate-timer">
+        <h4>Debate Timer</h4>
+        <input type="text" id="timer-1" value="00:00" />
 
-    <h4>Debate Timer</h4>
-    <input type="text" id="timer-1" value="00:00" />
+        <div id="buttons">
+          <button id="start-1" class="start">Start</button>
+          <button id="reset" class="reset">Reset timer</button>
+        </div>
 
-    <div id="buttons">
-      <button id="start-1">Start</button>
-      <button id="reset">Reset timer</button>
-    </div>
-    <p id="message"></p>
+        <br style="clear: both;" />
+      </div>
 
-    <h4>Prep Timer</h4> <a href="#" id="hide-prep">Hide</a>
-    <div id="prep-timer">
+      <p id="message"></p>
+
+      <h4>Prep Timer <a href="#" id="hide-prep">Hide</a></h4>
+      
       <p>Select the timer to enter or modify the time.</p>
+      
+      <div id="prep-timer">
+        <div id="team-a">
+          <h5>Team A</h5>
+          <input type="text" id="timer-a" value="00:00" />
+          <button id="start-a">Start</button>
+        </div>
 
-      <div id="team-a">
-        <h5>Team A</h5>
-        <input type="text" id="timer-a" value="00:00" />
-        <button id="start-a">Start</button>
+        <div id="team-b">
+          <h5>Team B</h5>
+          <input type="text" id="timer-b" value="00:00" />
+          <button id="start-b">Start</button>
+        </div>
+
+        <br style="clear: both;" />
       </div>
 
-      <div id="team-b">
-        <h5>Team B</h5>
-        <input type="text" id="timer-b" value="00:00" />
-        <button id="start-b">Start</button>
-      </div>
     </div>
     
     <canvas id="img" width="640" height="360" style="display:none;"></canvas>

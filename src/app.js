@@ -74,6 +74,7 @@ include('//ca.ios.ba/files/the-jibe/timer/src/StopWatch.js?_t=' + Date.now(), fu
       return function() { resume(opt); };
     })(id);
     button.innerHTML = 'Resume';
+    button.className = 'resume';
     stopwatch[id].pause();
   };
 
@@ -83,6 +84,7 @@ include('//ca.ios.ba/files/the-jibe/timer/src/StopWatch.js?_t=' + Date.now(), fu
       return function() { pause(opt); };
     })(id);
     button.innerHTML = 'Pause';
+    button.className = 'pause';
     stopwatch[id].resume();
   };
 
@@ -92,6 +94,7 @@ include('//ca.ios.ba/files/the-jibe/timer/src/StopWatch.js?_t=' + Date.now(), fu
       return function() { start(opt); };
     })(id);
     button.innerHTML = 'Start';
+    button.className = 'start';
     stopwatch[id].stop();
   };
 
@@ -101,12 +104,16 @@ include('//ca.ios.ba/files/the-jibe/timer/src/StopWatch.js?_t=' + Date.now(), fu
         value   = document.getElementById('timer-' + id).value;
     if (/^[0-9]{2}:[0-9]{2}$/.test(value)) {
       start.disabled = false;
+      start.className = 'start';
       message.innerHTML = '';
+      message.style.display = 'none';
       stopwatch[id].timestr = value;
     }
     else {
       start.disabled = true;
+      start.className = 'disabled';
       message.innerHTML = 'Time format must be mm:ss';
+      message.style.display = 'block';
       stopwatch[id].timestr = '00:00';
     }
     var dataurl = hovertimer.drawToDataUrl(stopwatch);
@@ -123,6 +130,10 @@ include('//ca.ios.ba/files/the-jibe/timer/src/StopWatch.js?_t=' + Date.now(), fu
       return function() { start(opt); };
     })(id);
   }
+  
+  document.getElementById('timer-1').onkeydown = function() {
+    if (document.getElementById('debate-time-selected')) document.getElementById('debate-time-selected').removeAttribute('id');
+  };
 
   document.getElementById('reset').onclick = function() {
     if (stopwatch['1'].last) {
