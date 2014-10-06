@@ -17,6 +17,10 @@ participants (users in Google Hangouts) are then able to view the timer.
 Once permissioned, just create a hangout and on the left sidebar choose "add application", click on tab "developer" and then click on 
 "Hangout Timer". Other people can join the hangout and they don't need to add the extension or be a developer on the project.
 
+Currently the extension is stored on my server, which doesn't have a valid SSL certificate. So please, first [visit my website](https://ca.ios.ba) and accept the certificate.
+
+[Try the extension](https://hangoutsapi.talkgadget.google.com/hangouts?gid=223741802818) now!
+
 ### Credits
 
 Caio Almeida <caiosba@gmail.com>
