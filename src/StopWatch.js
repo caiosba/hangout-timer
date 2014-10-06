@@ -41,38 +41,95 @@ function StopWatch(id) {
   };
 }
 
-function roundRect(ctx, x, y, width, height, radius) {
+function roundRect(ctx, x, y, width, height, r1, r2, r3, r4, stroke, fill) {
   if (typeof radius === 'undefined') {
     radius = 5;
   }
   ctx.beginPath();
-  ctx.moveTo(x + radius, y);
-  ctx.lineTo(x + width - radius, y);
-  ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-  ctx.lineTo(x + width, y + height - radius);
-  ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-  ctx.lineTo(x + radius, y + height);
-  ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-  ctx.lineTo(x, y + radius);
-  ctx.quadraticCurveTo(x, y, x + radius, y);
+  ctx.moveTo(x + r1, y);
+  
+  ctx.lineTo(x + width - r1, y);
+  ctx.quadraticCurveTo(x + width, y, x + width, y + r1);
+
+  ctx.lineTo(x + width, y + height - r2);
+  ctx.quadraticCurveTo(x + width, y + height, x + width - r2, y + height);
+
+  ctx.lineTo(x + r3, y + height);
+  ctx.quadraticCurveTo(x, y + height, x, y + height - r3);
+
+  ctx.lineTo(x, y + r4);
+  ctx.quadraticCurveTo(x, y, x + r4, y);
+
   ctx.closePath();
   ctx.lineWidth = 2;
-  ctx.strokeStyle = 'black';
+  ctx.strokeStyle = stroke;
   ctx.stroke();
-  ctx.fillStyle = 'white';
+  ctx.fillStyle = fill;
   ctx.fill();
 }
 
 function HoverTimer(canvas, x, y) {
   var ctx = canvas.getContext('2d');
-  ctx.font = 'bold 70px Arial';
   var x = x;
   var y = y;
   
   function drawTimer(stopwatch) {
-    roundRect(ctx, x, y - 10 - canvas.height / 3, canvas.width / 3, canvas.height / 3, 6);
+    // White rectangle
+    roundRect(ctx, x, y - 10 - canvas.height / 3, canvas.width / 2.4, canvas.height / 3, 6, 6, 6, 6, 'black', 'white');
+
+    // Grey header
+    roundRect(ctx, x + 1, y - 9 - canvas.height / 3, canvas.width / 2.4 - 2, canvas.height / 9, 6, 0, 0, 6, '#D6D6D6', '#D6D6D6');
+    
+    // Title
+    ctx.fillStyle = '#000000';
+    ctx.font = '26px Arial';
+    ctx.fillText('USC Debate Timer', x + 10, y - canvas.height / 3 + 20);
+    
+    // Main timer
     ctx.fillStyle = '#4C7A34';
-    ctx.fillText(stopwatch['1'].timestr, x + 10, y - 20);
+    ctx.font = '48px Arial';
+    ctx.fillText(stopwatch['1'].timestr, x + 10, y - 33);
+
+    // Vertical line
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = 'black';
+    ctx.beginPath();
+    ctx.moveTo(x + 140, y - 20);
+    ctx.lineTo(x + 140, y - 80);
+    ctx.closePath();
+    ctx.stroke();
+
+    // "Prep timer" title
+    ctx.fillStyle = '#000000';
+    ctx.font = '13px Arial';
+    ctx.fillText('Prep Timer', x + 150, y - 70);
+
+    // Horizontal line
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = 'black';
+    ctx.beginPath();
+    ctx.moveTo(x + 150, y - 65);
+    ctx.lineTo(x + 260, y - 65);
+    ctx.closePath();
+    ctx.stroke();
+
+    // "Team A" and "Team B" titles
+    ctx.fillText('Team A', x + 150, y - 48);
+    ctx.fillText('Team B', x + 150, y - 22);
+
+    // Horizontal line
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = '#CCCCCC';
+    ctx.beginPath();
+    ctx.moveTo(x + 150, y - 40);
+    ctx.lineTo(x + 260, y - 40);
+    ctx.closePath();
+    ctx.stroke();
+
+    // "Team A" and "Team B" timers
+    ctx.font = '21px Arial';
+    ctx.fillText(stopwatch['a'].timestr, x + 202, y - 46);
+    ctx.fillText(stopwatch['b'].timestr, x + 202, y - 20);
   }
 
   return {
