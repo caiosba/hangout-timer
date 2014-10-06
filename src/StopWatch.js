@@ -15,7 +15,6 @@ function StopWatch(id) {
       }
       this.running = false;
       this.elapsed = 0;
-      this.timestr = '00:00';
     },
     pause: function() {
       this.running = false;
@@ -72,10 +71,16 @@ function HoverTimer(canvas, x, y) {
   var ctx = canvas.getContext('2d');
   var x = x;
   var y = y;
+
+  function colorForTimer(stopwatch) {
+    if (stopwatch.running) return '#4C7A34';
+    if (stopwatch.elapsed > 0 || stopwatch.timestr == '00:00') return '#D6D6D6';
+    if (stopwatch.elapsed == 0) return '#000000';
+  }
   
   function drawTimer(stopwatch) {
     // White rectangle
-    roundRect(ctx, x, y - 10 - canvas.height / 3, canvas.width / 2.4, canvas.height / 3, 6, 6, 6, 6, 'black', 'white');
+    roundRect(ctx, x, y - 10 - canvas.height / 3, canvas.width / 2.4, canvas.height / 3, 6, 6, 6, 6, '#000000', '#FFFFFF');
 
     // Grey header
     roundRect(ctx, x + 1, y - 9 - canvas.height / 3, canvas.width / 2.4 - 2, canvas.height / 9, 6, 0, 0, 6, '#D6D6D6', '#D6D6D6');
@@ -86,13 +91,13 @@ function HoverTimer(canvas, x, y) {
     ctx.fillText('USC Debate Timer', x + 10, y - canvas.height / 3 + 20);
     
     // Main timer
-    ctx.fillStyle = '#4C7A34';
+    ctx.fillStyle = colorForTimer(stopwatch['1']);
     ctx.font = '48px Arial';
     ctx.fillText(stopwatch['1'].timestr, x + 10, y - 33);
 
     // Vertical line
     ctx.lineWidth = 1;
-    ctx.strokeStyle = 'black';
+    ctx.strokeStyle = '#000000';
     ctx.beginPath();
     ctx.moveTo(x + 140, y - 20);
     ctx.lineTo(x + 140, y - 80);
@@ -106,7 +111,7 @@ function HoverTimer(canvas, x, y) {
 
     // Horizontal line
     ctx.lineWidth = 1;
-    ctx.strokeStyle = 'black';
+    ctx.strokeStyle = '#000000';
     ctx.beginPath();
     ctx.moveTo(x + 150, y - 65);
     ctx.lineTo(x + 260, y - 65);
@@ -119,7 +124,7 @@ function HoverTimer(canvas, x, y) {
 
     // Horizontal line
     ctx.lineWidth = 1;
-    ctx.strokeStyle = '#CCCCCC';
+    ctx.strokeStyle = '#D6D6D6';
     ctx.beginPath();
     ctx.moveTo(x + 150, y - 40);
     ctx.lineTo(x + 260, y - 40);
@@ -128,7 +133,9 @@ function HoverTimer(canvas, x, y) {
 
     // "Team A" and "Team B" timers
     ctx.font = '21px Arial';
+    ctx.fillStyle = colorForTimer(stopwatch['a']);
     ctx.fillText(stopwatch['a'].timestr, x + 202, y - 46);
+    ctx.fillStyle = colorForTimer(stopwatch['b']);
     ctx.fillText(stopwatch['b'].timestr, x + 202, y - 20);
   }
 

@@ -97,15 +97,20 @@ include('//ca.ios.ba/files/the-jibe/timer/src/StopWatch.js?_t=' + Date.now(), fu
 
   var validate = function(id) {
     var start   = document.getElementById('start-' + id),
-        message = document.getElementById('message');
-    if (/^[0-9]{2}:[0-9]{2}$/.test(document.getElementById('timer-' + id).value)) {
+        message = document.getElementById('message'),
+        value   = document.getElementById('timer-' + id).value;
+    if (/^[0-9]{2}:[0-9]{2}$/.test(value)) {
       start.disabled = false;
       message.innerHTML = '';
+      stopwatch[id].timestr = value;
     }
     else {
       start.disabled = true;
       message.innerHTML = 'Time format must be mm:ss';
+      stopwatch[id].timestr = '00:00';
     }
+    var dataurl = hovertimer.drawToDataUrl(stopwatch);
+    overlay.setUrl(dataurl);
   };
 
   for (var i = 0; i < timers.length; i++) {
@@ -122,9 +127,9 @@ include('//ca.ios.ba/files/the-jibe/timer/src/StopWatch.js?_t=' + Date.now(), fu
   document.getElementById('reset').onclick = function() {
     if (stopwatch['1'].last) {
       document.getElementById('timer-1').value = stopwatch['1'].timestr = stopwatch['1'].last;
+      stop('1');
       var dataurl = hovertimer.drawToDataUrl(stopwatch);
       overlay.setUrl(dataurl);
-      stop('1');
     }
   };
 
@@ -182,4 +187,7 @@ include('//ca.ios.ba/files/the-jibe/timer/src/StopWatch.js?_t=' + Date.now(), fu
       this.innerHTML = 'Hide';
     }
   };
+
+  var dataurl = hovertimer.drawToDataUrl(stopwatch);
+  overlay.setUrl(dataurl);
 });
