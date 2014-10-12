@@ -10,7 +10,7 @@
 <html>
   <head>
     <style type="text/css">
-      @import url('//ca.ios.ba/files/the-jibe/timer/src/style.css');
+      @import url('//ca.ios.ba/files/the-jibe/timer/src/style.css?1');
     </style>
   </head>
   <body>
