@@ -1,5 +1,5 @@
 body {
-  background: #444;
+  background: #363636;
   font-family: Arial, sans-serif;
   color: #fff;
   padding: 0;
@@ -49,10 +49,6 @@ select {
   margin-right: 20px;
   margin-top: 20px;
   background: #1464F6;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  -khtml-border-radius: 6px;
-  border-radius: 6px;
 }
 
 #debate-time-selected {
@@ -92,10 +88,6 @@ button {
   text-align: center;
   font-size: 14px;
   background: #7a7a7a;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  -khtml-border-radius: 6px;
-  border-radius: 6px;
 }
 
 button.start,
