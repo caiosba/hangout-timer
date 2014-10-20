@@ -23,7 +23,7 @@ Currently the extension is stored on my server, which doesn't have a valid SSL c
 
 ### Demonstration
 
-Check [this video](http://ca.ios.ba/files/the-jibe/timer/demo1.mp4) and [this other video](http://ca.ios.ba/files/the-jibe/timer/demo2.mp4)!
+Check [this video](http://ca.ios.ba/files/the-jibe/timer/demo1.mp4), [this other video](http://ca.ios.ba/files/the-jibe/timer/demo2.mp4) and [this one also](http://ca.ios.ba/files/the-jibe/timer/demo3.mp4)!
 
 ### Credits
 
