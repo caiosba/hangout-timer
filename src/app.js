@@ -1,12 +1,28 @@
 function HangoutOverlay() {
   gapi.hangout.av.setLocalParticipantVideoMirrored(false);
+  
   var prevImgRsc = null;
+  var timerLoaded = false;
+  
   function refreshFromUrl(dataUrl) {
-    var imgRsc = gapi.hangout.av.effects.createImageResource(dataUrl);
+    if (!timerLoaded) {
+      var timer = gapi.hangout.av.effects.createImageResource('https://ca.ios.ba/files/the-jibe/timer/res/timer.png');
+      timer.showOverlay({
+        position: { x: -0.25, y: 0.2 },
+        scale: {
+          magnitude: 0.45,
+          reference: gapi.hangout.av.effects.ScaleReference.WIDTH
+        }
+      });
+      timerLoaded = true;
+    }
+
+    var imgRsc = gapi.hangout.av.effects.createImageResource(dataUrl); 
     imgRsc.showOverlay();
     if (prevImgRsc) prevImgRsc.dispose();
     prevImgRsc = imgRsc;
   };
+  
   return {
     setUrl: refreshFromUrl
   };

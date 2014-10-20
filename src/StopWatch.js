@@ -84,64 +84,27 @@ function HoverTimer(canvas, x, y) {
   }
   
   function drawTimer(stopwatch) {
-    // White rectangle
-    roundRect(ctx, x, y - 10 - canvas.height / 3, canvas.width / 2.4, canvas.height / 3, 6, 6, 6, 6, '#000000', '#FFFFFF');
+    ctx.lineWidth = 1;
 
-    // Grey header
-    roundRect(ctx, x + 1, y - 9 - canvas.height / 3, canvas.width / 2.4 - 2, canvas.height / 9, 6, 0, 0, 6, '#D6D6D6', '#D6D6D6');
-    
-    // Title
-    ctx.fillStyle = '#000000';
-    ctx.font = '26px Arial';
-    ctx.fillText('USC Debate Timer', x + 10, y - canvas.height / 3 + 20);
-    
     // Main timer
+    ctx.font = '54px Arial';
     ctx.fillStyle = colorForTimer(stopwatch['1']);
-    ctx.font = '48px Arial';
-    ctx.fillText(stopwatch['1'].timestr, x + 10, y - 33);
-
-    // Vertical line
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = '#000000';
-    ctx.beginPath();
-    ctx.moveTo(x + 140, y - 20);
-    ctx.lineTo(x + 140, y - 80);
-    ctx.closePath();
-    ctx.stroke();
-
-    // "Prep timer" title
-    ctx.fillStyle = '#000000';
-    ctx.font = '13px Arial';
-    ctx.fillText('Prep Timer', x + 150, y - 70);
-
-    // Horizontal line
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = '#000000';
-    ctx.beginPath();
-    ctx.moveTo(x + 150, y - 65);
-    ctx.lineTo(x + 260, y - 65);
-    ctx.closePath();
-    ctx.stroke();
-
-    // "Team A" and "Team B" titles
-    ctx.fillText('Team A', x + 150, y - 48);
-    ctx.fillText('Team B', x + 150, y - 22);
-
-    // Horizontal line
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = '#D6D6D6';
-    ctx.beginPath();
-    ctx.moveTo(x + 150, y - 40);
-    ctx.lineTo(x + 260, y - 40);
-    ctx.closePath();
-    ctx.stroke();
+    ctx.strokeStyle = colorForTimer(stopwatch['1']);
+    // ctx.strokeText(stopwatch['1'].timestr, x + 40, y - 65);
+    ctx.fillText(stopwatch['1'].timestr, x + 40, y - 65);
 
     // "Team A" and "Team B" timers
-    ctx.font = '21px Arial';
+    ctx.font = '16px Arial';
+    
     ctx.fillStyle = colorForTimer(stopwatch['a']);
-    ctx.fillText(stopwatch['a'].timestr, x + 202, y - 46);
+    ctx.strokeStyle = colorForTimer(stopwatch['a']);
+    // ctx.strokeText(stopwatch['a'].timestr, x + 243, y - 83);
+    ctx.fillText(stopwatch['a'].timestr, x + 243, y - 83);
+    
     ctx.fillStyle = colorForTimer(stopwatch['b']);
-    ctx.fillText(stopwatch['b'].timestr, x + 202, y - 20);
+    ctx.strokeStyle = colorForTimer(stopwatch['b']);
+    // ctx.strokeText(stopwatch['b'].timestr, x + 243, y - 48);
+    ctx.fillText(stopwatch['b'].timestr, x + 243, y - 48);
   }
 
   return {
