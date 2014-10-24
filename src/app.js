@@ -6,7 +6,7 @@ function HangoutOverlay() {
   
   function refreshFromUrl(dataUrl) {
     if (!timerLoaded) {
-      var timer = gapi.hangout.av.effects.createImageResource('https://ca.ios.ba/files/the-jibe/timer/res/timer.png');
+      var timer = gapi.hangout.av.effects.createImageResource('https://ca.ios.ba/files/the-jibe/timer/res/timerhi.png');
       timer.showOverlay({
         position: { x: -0.25, y: 0.2 },
         scale: {
