@@ -1,3 +1,5 @@
+var overlays = {};
+
 function HangoutOverlay() {
   gapi.hangout.av.setLocalParticipantVideoMirrored(false);
   
@@ -6,21 +8,21 @@ function HangoutOverlay() {
   
   function refreshFromUrl(dataUrl) {
     if (!timerLoaded) {
-      var timer = gapi.hangout.av.effects.createImageResource('https://ca.ios.ba/files/the-jibe/timer/res/timerhi.png');
-      timer.showOverlay({
+      overlays['timer'] = gapi.hangout.av.effects.createImageResource('https://ca.ios.ba/files/the-jibe/timer/res/timerhi.png?_t=' + Date.now());
+      overlays['timer'].showOverlay({
         position: { x: -0.25, y: 0.2 },
         scale: {
-          magnitude: 0.45,
+          magnitude: 0.5,
           reference: gapi.hangout.av.effects.ScaleReference.WIDTH
         }
       });
       timerLoaded = true;
     }
 
-    var imgRsc = gapi.hangout.av.effects.createImageResource(dataUrl); 
-    imgRsc.showOverlay();
+    overlays['numbers'] = gapi.hangout.av.effects.createImageResource(dataUrl); 
+    overlays['numbers'].showOverlay();
     if (prevImgRsc) prevImgRsc.dispose();
-    prevImgRsc = imgRsc;
+    prevImgRsc = overlays['numbers'];
   };
   
   return {

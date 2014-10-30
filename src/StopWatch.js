@@ -78,33 +78,31 @@ function HoverTimer(canvas, x, y) {
   var y = y;
 
   function colorForTimer(stopwatch) {
-    if (stopwatch.running) return '#4C7A34';
-    if (stopwatch.elapsed > 0 || stopwatch.timestr == '00:00') return '#D6D6D6';
-    if (stopwatch.elapsed == 0) return '#000000';
+    if (!stopwatch.running && stopwatch.timestr != '00:00') return '#D68227';
+    else return 'white';
   }
   
   function drawTimer(stopwatch) {
-    ctx.lineWidth = 1;
-
+    
     // Main timer
-    ctx.font = '54px Arial';
-    ctx.fillStyle = colorForTimer(stopwatch['1']);
+    ctx.font = '55px Arial';
+    ctx.lineWidth = 3;
     ctx.strokeStyle = colorForTimer(stopwatch['1']);
-    // ctx.strokeText(stopwatch['1'].timestr, x + 40, y - 65);
-    ctx.fillText(stopwatch['1'].timestr, x + 40, y - 65);
+    ctx.fillStyle = colorForTimer(stopwatch['1']);
+    ctx.strokeText(stopwatch['1'].timestr, x + 30, y - 60);
+    ctx.fillText(stopwatch['1'].timestr, x + 30, y - 60);
 
     // "Team A" and "Team B" timers
-    ctx.font = '16px Arial';
+    ctx.font = '14px Arial';
+    ctx.lineWidth = 1;
+
+    var space = String.fromCharCode(8202);
     
-    ctx.fillStyle = colorForTimer(stopwatch['a']);
     ctx.strokeStyle = colorForTimer(stopwatch['a']);
-    // ctx.strokeText(stopwatch['a'].timestr, x + 243, y - 83);
-    ctx.fillText(stopwatch['a'].timestr, x + 243, y - 83);
+    ctx.strokeText(stopwatch['a'].timestr.split('').join(space + space), x + 253, y - 82);
     
-    ctx.fillStyle = colorForTimer(stopwatch['b']);
     ctx.strokeStyle = colorForTimer(stopwatch['b']);
-    // ctx.strokeText(stopwatch['b'].timestr, x + 243, y - 48);
-    ctx.fillText(stopwatch['b'].timestr, x + 243, y - 48);
+    ctx.strokeText(stopwatch['b'].timestr.split('').join(space + space), x + 253, y - 42);
   }
 
   return {

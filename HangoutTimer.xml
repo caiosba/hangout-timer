@@ -66,7 +66,7 @@
 
     </div>
     
-    <canvas id="img" width="640" height="360" style="display:none;"></canvas>
+    <canvas id="img" width="640" height="360"></canvas>
 
     <script src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
     <script src="//ca.ios.ba/files/the-jibe/timer/src/loader.js"></script>
