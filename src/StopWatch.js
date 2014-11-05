@@ -93,16 +93,13 @@ function HoverTimer(canvas, x, y) {
     ctx.fillText(stopwatch['1'].timestr, x + 30, y - 60);
 
     // "Team A" and "Team B" timers
-    ctx.font = '14px Arial';
-    ctx.lineWidth = 1;
+    ctx.font = '18px Arial';
 
-    var space = String.fromCharCode(8202);
+    ctx.fillStyle = colorForTimer(stopwatch['a']);
+    ctx.fillText(stopwatch['a'].timestr, x + 253, y - 80);
     
-    ctx.strokeStyle = colorForTimer(stopwatch['a']);
-    ctx.strokeText(stopwatch['a'].timestr.split('').join(space + space), x + 253, y - 82);
-    
-    ctx.strokeStyle = colorForTimer(stopwatch['b']);
-    ctx.strokeText(stopwatch['b'].timestr.split('').join(space + space), x + 253, y - 42);
+    ctx.fillStyle = colorForTimer(stopwatch['b']);
+    ctx.fillText(stopwatch['b'].timestr, x + 253, y - 41);
   }
 
   return {
