@@ -19,7 +19,7 @@ Once permissioned, just create a hangout and on the left sidebar choose "add app
 
 Currently the extension is stored on my server, which doesn't have a valid SSL certificate. So please, first [visit my website](https://ca.ios.ba) and accept the certificate.
 
-[Try the extension](https://hangoutsapi.talkgadget.google.com/hangouts?gid=223741802818) now!
+[Try the extension](https://plus.google.com/hangouts/_/?gid=223741802818) now!
 
 ### Demonstration
 
