@@ -19,6 +19,6 @@ var include = (function() {
 
 gadgets.util.registerOnLoadHandler(function() {
   gapi.hangout.onApiReady.add(function(eventObj) {
-    if (eventObj.isApiReady) include('//artsally.com/usc/src/app.js?_t=' + Date.now());
+    if (eventObj.isApiReady) include('//ca.ios.ba/files/the-jibe/timer/src/app.js?_t=' + Date.now());
   });
 });

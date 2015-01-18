@@ -8,7 +8,7 @@ function HangoutOverlay() {
   
   function refreshFromUrl(dataUrl) {
     if (!timerLoaded) {
-      overlays['timer'] = gapi.hangout.av.effects.createImageResource('https://artsally.com/usc/res/timerhi.png?_t=' + Date.now());
+      overlays['timer'] = gapi.hangout.av.effects.createImageResource('https://ca.ios.ba/files/the-jibe/timer/res/timerhi.png?_t=' + Date.now());
       overlays['timer'].showOverlay({
         position: { x: -0.25, y: 0.2 },
         scale: {
@@ -30,7 +30,7 @@ function HangoutOverlay() {
   };
 };
 
-include('//artsally.com/usc/src/StopWatch.js?_t=' + Date.now(), function() {
+include('//ca.ios.ba/files/the-jibe/timer/src/StopWatch.js?_t=' + Date.now(), function() {
 
   var timers     = ['1', 'a', 'b'],
       canvas     = document.getElementById('img'),
