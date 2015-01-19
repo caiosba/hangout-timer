@@ -19,7 +19,12 @@ Once permissioned, just create a hangout and on the left sidebar choose "add app
 
 Currently the extension is stored on my server, which doesn't have a valid SSL certificate. So please, first [visit my website](https://ca.ios.ba) and accept the certificate.
 
-[Try the extension](https://plus.google.com/hangouts/_/?gid=1059259466031) now!
+You can try the extension as two roles:
+* [Administrator](https://plus.google.com/hangouts/_/?gid=1059259466031&gd=admin:true)
+* [Participant](https://plus.google.com/hangouts/_/?gid=1059259466031)
+
+You can provide data to the extension by padding a `gd` parameter with the following format: `gd=key1:value1;key2:value2` and so
+they will be available under a variable called `params`, which is a hash.
 
 ### Demonstration
 

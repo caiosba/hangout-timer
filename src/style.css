@@ -1,8 +1,19 @@
 body {
-  background: #363636;
   font-family: Arial, sans-serif;
   color: #fff;
   padding: 0;
+}
+
+#bodytag.admin,
+#bodytag.admin canvas {
+  display: block;
+  background: #363636;
+}
+
+#bodytag.not-admin,
+#bodytag.not-admin canvas {
+  display: none;
+  background: transparent;
 }
 
 #body {

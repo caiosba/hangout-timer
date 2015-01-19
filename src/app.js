@@ -1,4 +1,5 @@
-var overlays = {};
+var overlays = {},
+    admin = false;
 
 function HangoutOverlay() {
   gapi.hangout.av.setLocalParticipantVideoMirrored(false);
@@ -37,6 +38,25 @@ include('//ca.ios.ba/files/the-jibe/timer/src/StopWatch.js?_t=' + Date.now(), fu
       overlay    = new HangoutOverlay(),
       hovertimer = new HoverTimer(canvas, 10, canvas.height - 10),
       stopwatch  = {};
+
+  // Process input parameters
+  var appdata = gadgets.views.getParams()['appData'],
+      params = {};
+  if (appdata) {
+    var paramsstr = appdata.split(';');
+    for (var i = 0; i < paramsstr.length; i++) {
+      var data = paramsstr[i].split(':');
+      params[data[0]] = data[1];
+    }
+  }
+  if ((params['admin'] && gapi.hangout.data.getValue('admin') == undefined) || gapi.hangout.data.getValue('admin') == gapi.hangout.getLocalParticipant().person.id) {
+    document.getElementById('bodytag').className = 'admin';
+    gapi.hangout.data.setValue('admin', gapi.hangout.getLocalParticipant().person.id);
+    admin = true;
+  }
+  else {
+    document.getElementById('bodytag').className = 'not-admin';
+  }
 
   for (var i = 0; i < timers.length; i++) {
     var id = timers[i];
@@ -222,4 +242,17 @@ include('//ca.ios.ba/files/the-jibe/timer/src/StopWatch.js?_t=' + Date.now(), fu
 
   var dataurl = hovertimer.drawToDataUrl(stopwatch);
   overlay.setUrl(dataurl);
+
+  var stateUpdated = function(evt) {
+    console.log(evt.state);
+    for (var key in stopwatch) {
+      stopwatch[key].timestr = evt.state[key];
+    }
+    var dataurl = hovertimer.drawToDataUrl(stopwatch);
+    overlay.setUrl(dataurl);
+  };
+
+  if (!admin) {
+    gapi.hangout.data.onStateChanged.add(stateUpdated);
+  }
 });

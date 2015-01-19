@@ -13,9 +13,9 @@
       @import url('//ca.ios.ba/files/the-jibe/timer/src/style.css?1');
     </style>
   </head>
-  <body>
+  <body id="bodytag">
     <div id="body">
-      <h3>USC Debate Timer Admin</h3>
+      <h3>USC Debate Timer</h3>
       
       <label for="debate-type">Debate type:</label>
       <select id="debate-type">

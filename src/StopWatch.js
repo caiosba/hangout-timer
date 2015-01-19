@@ -8,6 +8,9 @@ function StopWatch(id) {
     last: null,
     running: false,
     timestr: '00:00',
+    updateTime: function(time) {
+      this.timestr = time;
+    },
     stop: function() {
       if (this.interval) {
         clearInterval(this.interval);
@@ -107,6 +110,9 @@ function HoverTimer(canvas, x, y) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
     },
     drawToDataUrl: function(stopwatch) {
+      if (admin) {
+        gapi.hangout.data.submitDelta({ '1' : stopwatch['1'].timestr, 'a' : stopwatch['a'].timestr, 'b' : stopwatch['b'].timestr });
+      }
       this.clear();
       drawTimer(stopwatch);
       return canvas.toDataURL();
