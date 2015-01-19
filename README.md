@@ -10,7 +10,7 @@ for conducting online debates. There is a user (judge) that controls the timer, 
 participants (users in Google Hangouts) are then able to view the timer.
 
 * [Wireframes](https://moqups.com/thejibe/l9XB9zmV/p:a402b6535)
-* [Google Application](https://code.google.com/apis/console/b/1/?noredirect#project:223741802818:hangout)
+* [Google Application](https://code.google.com/apis/console/b/1/?noredirect#project:1059259466031:hangout)
 
 ### Usage
 
