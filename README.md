@@ -23,7 +23,7 @@ You can try the extension as two roles:
 * [Administrator](https://plus.google.com/hangouts/_/?gid=1059259466031&gd=admin:true)
 * [Participant](https://plus.google.com/hangouts/_/?gid=1059259466031)
 
-You can provide data to the extension by padding a `gd` parameter with the following format: `gd=key1:value1;key2:value2` and so
+You can provide data to the extension by adding a `gd` parameter with the following format: `gd=key1:value1;key2:value2` and so
 they will be available under a variable called `params`, which is a hash.
 
 ### Demonstration

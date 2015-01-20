@@ -244,7 +244,6 @@ include('//ca.ios.ba/files/the-jibe/timer/src/StopWatch.js?_t=' + Date.now(), fu
   overlay.setUrl(dataurl);
 
   var stateUpdated = function(evt) {
-    console.log(evt.state);
     for (var key in stopwatch) {
       stopwatch[key].timestr = evt.state[key];
     }
