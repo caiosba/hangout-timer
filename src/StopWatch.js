@@ -21,7 +21,7 @@ function StopWatch(id) {
     },
     pause: function() {
       this.running = false;
-      this.duration = this.duration - this.elapsed;
+      this.duration = this.duration - parseInt(this.elapsed / 4);
       this.elapsed = 0;
     },
     resume: function(time) {
@@ -37,8 +37,8 @@ function StopWatch(id) {
       this.interval = setInterval(function() {
         if (that.running) that.elapsed++;
         if (that.handler) that.handler(that);
-        if (that.elapsed >= that.duration) that.stop();
-      }, 1000);
+        if (parseInt(that.elapsed / 4) >= that.duration) that.stop();
+      }, 250);
     },
     reset: function(duration) {
       this.stop();

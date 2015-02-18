@@ -72,8 +72,8 @@ include('//ca.ios.ba/files/the-jibe/timer/src/StopWatch.js?_t=' + Date.now(), fu
       // Each second
       stopwatch[id].handler = function() {
         // Update timer here
-        var minutes = parseInt((stopwatch[id].duration - stopwatch[id].elapsed) / 60, 10);
-        var seconds = parseInt((stopwatch[id].duration - stopwatch[id].elapsed) % 60, 10);
+        var minutes = parseInt((stopwatch[id].duration - parseInt(stopwatch[id].elapsed / 4)) / 60, 10);
+        var seconds = parseInt((stopwatch[id].duration - parseInt(stopwatch[id].elapsed / 4)) % 60, 10);
         if (minutes < 10) minutes = '0' + minutes;
         if (seconds < 10) seconds = '0' + seconds;
         stopwatch[id].timestr = minutes + ':' + seconds;
