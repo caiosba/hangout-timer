@@ -240,18 +240,23 @@ include('//ca.ios.ba/files/the-jibe/timer/src/StopWatch.js?_t=' + Date.now(), fu
     }
   };
 
-  var dataurl = hovertimer.drawToDataUrl(stopwatch);
-  overlay.setUrl(dataurl);
-
   var stateUpdated = function(evt) {
     for (var key in stopwatch) {
       stopwatch[key].timestr = evt.state[key];
+      document.getElementById('timer-' + key).value = evt.state[key];
     }
+    // Uncomment if you want to display the timers rendered on the video frame/canvas
+    /* 
     var dataurl = hovertimer.drawToDataUrl(stopwatch);
     overlay.setUrl(dataurl);
+    */
   };
 
-  if (!admin) {
+  if (admin) {
+    var dataurl = hovertimer.drawToDataUrl(stopwatch);
+    overlay.setUrl(dataurl);
+  }
+  else {
     gapi.hangout.data.onStateChanged.add(stateUpdated);
   }
 });

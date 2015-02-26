@@ -4,16 +4,27 @@ body {
   padding: 0;
 }
 
-#bodytag.admin,
-#bodytag.admin canvas {
+body,
+body canvas {
   display: block;
   background: #363636;
 }
 
-#bodytag.not-admin,
-#bodytag.not-admin canvas {
-  display: none;
-  background: transparent;
+#bodytag.not-admin #debate-type-select,
+#bodytag.not-admin #debate-time-options-label,
+#bodytag.not-admin #debate-time-options,
+#bodytag.not-admin #disclaimer,
+#bodytag.not-admin #buttons,
+#bodytag.not-admin #message,
+#bodytag.not-admin .disclaimer,
+#bodytag.not-admin button,
+#bodytag.not-admin canvas,
+#bodytag.not-admin #debate-type {
+  display: none !important;
+}
+
+#bodytag.not-admin h3 {
+  border: 0 !important;
 }
 
 #body {

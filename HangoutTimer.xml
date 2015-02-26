@@ -10,25 +10,25 @@
 <html>
   <head>
     <style type="text/css">
-      @import url('//ca.ios.ba/files/the-jibe/timer/src/style.css?1');
+      @import url('//ca.ios.ba/files/the-jibe/timer/src/style.css?4');
     </style>
   </head>
   <body id="bodytag">
     <div id="body">
       <h3>USC Debate Timer</h3>
       
-      <label for="debate-type">Debate type:</label>
+      <label for="debate-type" id="debate-type-select">Debate type:</label>
       <select id="debate-type">
         <option value="highschool" selected>High School Policy</option>
         <option value="college">College Policy</option>
         <option value="british">British Parliamentary</option>
       </select>
 
-      <label for="debate-time-options">Set Debate Timer To:</label>
+      <label for="debate-time-options" id="debate-time-options-label">Set Debate Timer To:</label>
       <div id="debate-time-options">
       </div>
 
-      <p>Clicking on the timer display will allow you to enter a custom time.</p>
+      <p class="disclaimer">Clicking on the timer display will allow you to enter a custom time.</p>
 
       <div id="debate-timer">
         <h4>Debate Timer</h4>
@@ -46,7 +46,7 @@
 
       <h4>Prep Timer <a href="#" id="hide-prep">Hide</a></h4>
       
-      <p>Select the timer to enter or modify the time.</p>
+      <p class="disclaimer">Select the timer to enter or modify the time.</p>
       
       <div id="prep-timer">
         <div id="team-a">
