@@ -21,7 +21,7 @@ function StopWatch(id) {
     },
     pause: function() {
       this.running = false;
-      this.duration = this.duration - parseInt(this.elapsed / 4);
+      this.duration = this.duration - this.elapsed;
       this.elapsed = 0;
     },
     resume: function(time) {
@@ -37,8 +37,8 @@ function StopWatch(id) {
       this.interval = setInterval(function() {
         if (that.running) that.elapsed++;
         if (that.handler) that.handler(that);
-        if (parseInt(that.elapsed / 4) >= that.duration) that.stop();
-      }, 250);
+        if (that.elapsed >= that.duration) that.stop();
+      }, 1000);
     },
     reset: function(duration) {
       this.stop();
@@ -114,7 +114,8 @@ function HoverTimer(canvas, x, y) {
         gapi.hangout.data.submitDelta({ '1' : stopwatch['1'].timestr, 'a' : stopwatch['a'].timestr, 'b' : stopwatch['b'].timestr });
       }
       this.clear();
-      drawTimer(stopwatch);
+      // Uncomment if you want to display the timers rendered on the video frame/canvas
+      // drawTimer(stopwatch);
       return canvas.toDataURL();
     }
   };

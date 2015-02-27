@@ -2,12 +2,13 @@ var overlays = {},
     admin = false;
 
 function HangoutOverlay() {
-  gapi.hangout.av.setLocalParticipantVideoMirrored(false);
+  // gapi.hangout.av.setLocalParticipantVideoMirrored(false);
   
   var prevImgRsc = null;
   var timerLoaded = false;
   
   function refreshFromUrl(dataUrl) {
+    /*
     if (!timerLoaded) {
       overlays['timer'] = gapi.hangout.av.effects.createImageResource('https://ca.ios.ba/files/the-jibe/timer/res/timerhi.png?_t=' + Date.now());
       overlays['timer'].showOverlay({
@@ -19,6 +20,7 @@ function HangoutOverlay() {
       });
       timerLoaded = true;
     }
+    */
 
     overlays['numbers'] = gapi.hangout.av.effects.createImageResource(dataUrl); 
     overlays['numbers'].showOverlay();
@@ -72,8 +74,8 @@ include('//ca.ios.ba/files/the-jibe/timer/src/StopWatch.js?_t=' + Date.now(), fu
       // Each second
       stopwatch[id].handler = function() {
         // Update timer here
-        var minutes = parseInt((stopwatch[id].duration - parseInt(stopwatch[id].elapsed / 4)) / 60, 10);
-        var seconds = parseInt((stopwatch[id].duration - parseInt(stopwatch[id].elapsed / 4)) % 60, 10);
+        var minutes = parseInt((stopwatch[id].duration - parseInt(stopwatch[id].elapsed)) / 60, 10);
+        var seconds = parseInt((stopwatch[id].duration - parseInt(stopwatch[id].elapsed)) % 60, 10);
         if (minutes < 10) minutes = '0' + minutes;
         if (seconds < 10) seconds = '0' + seconds;
         stopwatch[id].timestr = minutes + ':' + seconds;
@@ -245,11 +247,8 @@ include('//ca.ios.ba/files/the-jibe/timer/src/StopWatch.js?_t=' + Date.now(), fu
       stopwatch[key].timestr = evt.state[key];
       document.getElementById('timer-' + key).value = evt.state[key];
     }
-    // Uncomment if you want to display the timers rendered on the video frame/canvas
-    /* 
     var dataurl = hovertimer.drawToDataUrl(stopwatch);
     overlay.setUrl(dataurl);
-    */
   };
 
   if (admin) {
@@ -257,6 +256,10 @@ include('//ca.ios.ba/files/the-jibe/timer/src/StopWatch.js?_t=' + Date.now(), fu
     overlay.setUrl(dataurl);
   }
   else {
+    var fields = ['1', 'a', 'b'];
+    for (var i=0; i < fields.length; i++) {
+      document.getElementById('timer-' + fields[i]).setAttribute('readonly', 'readonly');
+    }
     gapi.hangout.data.onStateChanged.add(stateUpdated);
   }
 });
