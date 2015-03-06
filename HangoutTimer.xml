@@ -10,7 +10,7 @@
 <html>
   <head>
     <style type="text/css">
-      @import url('//ca.ios.ba/files/the-jibe/timer/src/style.css?4');
+      @import url('//artsally.com/usc/src/style.css?4');
     </style>
   </head>
   <body id="bodytag">
@@ -69,7 +69,7 @@
     <canvas id="img" width="640" height="360"></canvas>
 
     <script src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
-    <script src="//ca.ios.ba/files/the-jibe/timer/src/loader.js"></script>
+    <script src="//artsally.com/usc/src/loader.js"></script>
 
   </body>
 </html>
