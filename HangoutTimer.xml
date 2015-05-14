@@ -15,7 +15,7 @@
   </head>
   <body id="bodytag">
     <div id="body">
-      <h3>USC Debate Timer</h3>
+      <h3>Tabroom Debate Timer</h3>
       
       <label for="debate-type" id="debate-type-select">Debate type:</label>
       <select id="debate-type">
