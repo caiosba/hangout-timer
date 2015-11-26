@@ -10,7 +10,7 @@ for conducting online debates. There is a user (judge) that controls the timer, 
 participants (users in Google Hangouts) are then able to view the timer.
 
 * [Wireframes](https://moqups.com/thejibe/l9XB9zmV/p:a402b6535)
-* [Google Application](https://console.developers.google.com/project/caiosba-timer?authuser=1)
+* [Google Application](https://console.developers.google.com/home/dashboard?project=timer-1141&authuser=0)
 
 ### Usage
 
@@ -20,8 +20,8 @@ Once permissioned, just create a hangout and on the left sidebar choose "add app
 Currently the extension is stored on my server, which doesn't have a valid SSL certificate. So please, first [visit my website](https://ca.ios.ba) and accept the certificate.
 
 You can try the extension as two roles:
-* [Administrator](https://plus.google.com/hangouts/_/?gid=223741802818&gd=admin:true)
-* [Participant](https://plus.google.com/hangouts/_/?gid=1059259466031)
+* [Administrator](https://plus.google.com/hangouts/_/?gid=813898675135&gd=admin:true)
+* Participant (get the URL of the Hangout started by the admin and append `?gid=813898675135`)
 
 You can provide data to the extension by adding a `gd` parameter with the following format: `gd=key1:value1;key2:value2` and so
 they will be available under a variable called `params`, which is a hash.
